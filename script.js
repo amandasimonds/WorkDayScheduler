@@ -14,6 +14,9 @@ $(document).ready(function() {
     //when you click on a timeblock, add a "day event"
 
     //----"add event" button----
+    $('.someElement').on('click', function() {
+
+    })
 
 
 
