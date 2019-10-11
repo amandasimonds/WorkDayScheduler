@@ -7,6 +7,11 @@ $(document).ready(function() {
     //timeblocks ----- append time blocks to make it more simple?
 
 
+    
+
+    //moment.js ---- work with documented time
+
+
 
 
     //add event listeners to elements
