@@ -4,6 +4,13 @@ body {
     line-height: 1;
   }
   
+  .container{
+    border: 1px solid gray;
+    margin:0 auto;
+    width:900px;
+    height: 600px;
+  }
+
   textarea{
     background: transparent;
     border: none;

@@ -1,34 +1,30 @@
 
+console.log(moment());
+console.log("Script is here");
+
+
 $(document).ready(function() {
 
+    //current date and time
 
-    //capture HTML elements
+    var m = moment();
+    var currentTime = m.format('MMMM Do YYYY, h:mm:ss a');
 
-    //timeblocks ----- append time blocks to make it more simple?
+    console.log(m);
+    console.log(currentTime);
 
-
-    
-
-    //moment.js ---- work with documented time
-
-
+    //timeblocks -----
 
 
-    //add event listeners to elements
+    //create render functions
 
-    //when you click on a timeblock, add a "day event"
+    //render new event
 
-    //----"add event" button----
-    $('.someElement').on('click', function() {
+    //create click functions
 
-    })
+    //add event function
 
-
-
-
-    //add elements to page
-
-    //append inputted text to time blocks
+})
 
 
 
@@ -64,4 +60,3 @@ $(document).ready(function() {
 
 
 
-}
