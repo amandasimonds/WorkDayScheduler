@@ -4,12 +4,12 @@ body {
     line-height: 1;
   }
   
-  .container{
+  /* .container{
     border: 1px solid gray;
     margin:0 auto;
     width:900px;
     height: 600px;
-  }
+  } */
 
   textarea{
     background: transparent;
@@ -40,7 +40,8 @@ body {
   .row {
     white-space: pre-wrap;
     height: 80px;
-    border-top: 1px solid white;;
+    border-top: 1px solid white;
+    padding: 10px;
   }
   
   .hour {

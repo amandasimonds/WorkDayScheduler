@@ -9,20 +9,62 @@ $(document).ready(function() {
 
     var m = moment();
     var currentTime = m.format('MMMM Do YYYY, h:mm:ss a');
+    var currentDate = m.format("MMM Do YYYY");
+    var currentHour = m.format()
 
     console.log(m);
     console.log(currentTime);
 
+    $("#currentDay").text("Today's Date: " + currentDate);
+
     //timeblocks -----
+    //make 9am - 5pm timeslots
 
+    //make event inputs
 
-    //create render functions
+    //make an array of timestamps
 
-    //render new event
+    var timeStamp = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 
-    //create click functions
+    //loop and create timestamp divs
+    for(var i = 0; i < timeStamp.length; i++){
 
-    //add event function
+        var makeEventButton = $("<button id='event-button'>")
+        var timeDiv = $("<div class='col-2'><p>" + timeStamp[i] + "</p></div>");
+        var eventDiv = $( "<div class='col-8'><input type='text' id='event-input' data-value = '" + timeStamp[i] + "'></div>");
+
+        makeEventButton.text("Add Event");
+        $("#event-input").attr("time", timeStamp[i]);
+
+        $(".row").append(timeDiv);
+        $(".row").append(eventDiv);
+        $(".row").append(makeEventButton);
+
+        
+
+        console.log("making buttons");
+        console.log(timeStamp[i]);
+
+        $("#event-button").on("click", function(buttonTime) {
+            event.preventDefault();
+
+            var buttonTime = $(".event-button").attr("value")
+    
+            //grab the text from the input box
+            var eventInput = $("#event-input").val().trim();
+
+    
+            localStorage.setItem("event", eventInput);
+    
+    
+    
+    
+        });
+    }
+
+    //add save button listener for input to add to local storage
+  
+    //make an if else statement for past, present and future (< = > moment)
 
 })
 
