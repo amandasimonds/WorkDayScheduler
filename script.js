@@ -6,7 +6,6 @@ console.log("Script is here");
 $(document).ready(function() {
 
     //current date and time
-
     var m = moment();
     var currentTime = m.format('MMMM Do YYYY, h:mm:ss a');
     var currentDate = m.format("MMM Do YYYY");
@@ -15,18 +14,15 @@ $(document).ready(function() {
     console.log(m);
     console.log(currentTime);
 
+    //current date header
     $("#currentDay").text("Today's Date: " + currentDate);
 
     //timeblocks -----
     //make 9am - 5pm timeslots
-
-    //make event inputs
-
     //make an array of timestamps
-
     var timeStamp = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 
-    //loop and create timestamp divs
+    //loop and create divs
     for(var i = 0; i < timeStamp.length; i++){
 
         var makeEventButton = $("<button id='event-button'>")
@@ -41,7 +37,7 @@ $(document).ready(function() {
         $(eventDiv).addClass("textarea");
         $(makeEventButton).addClass("saveBtn");
 
-        //append classes
+        //append divs
         $(".row").append(timeDiv);
         $(".row").append(eventDiv);
         $(".row").append(makeEventButton);
@@ -56,9 +52,21 @@ $(document).ready(function() {
             var buttonTime = $(".event-button").attr("value")
             //grab the text from the input box
             var eventInput = $("#event-input").val();
-            localStorage.setItem("event", eventInput);
+            //store text in local storage
+            var i = 0;
+            localStorage.setItem(i = timeStamp[i], eventInput);
             console.log("you tryna add an event!");
+            $(eventDiv).append(localStorage.getItem(eventInput));
         });
+
+        // $("#event-button").on("click", function(buttonTime) {
+        //     event.preventDefault();
+        //     var buttonTime = $(".event-button").attr("value")
+        //     //grab the text from the input box
+        //     var eventInput = $("#event-input").val();
+            
+        //     console.log("you tryna add an event again!");
+        // });
     }
 
     
