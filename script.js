@@ -31,40 +31,35 @@ $(document).ready(function() {
 
         var makeEventButton = $("<button id='event-button'>")
         var timeDiv = $("<div class='col-2'><p>" + timeStamp[i] + "</p></div>");
-        var eventDiv = $( "<div class='col-8'><input type='text' id='event-input' data-value = '" + timeStamp[i] + "'></div>");
+        var eventDiv = $( `<div class='col-8'><input type='text' id='event-input' data-value = ' ${timeStamp[i]} '></div>`);
 
         makeEventButton.text("Add Event");
         $("#event-input").attr("time", timeStamp[i]);
 
+        $(timeDiv).addClass("time-block");
+
         $(".row").append(timeDiv);
         $(".row").append(eventDiv);
         $(".row").append(makeEventButton);
-
         
 
         console.log("making buttons");
         console.log(timeStamp[i]);
 
+        //save button listener for input to add to local storage
         $("#event-button").on("click", function(buttonTime) {
             event.preventDefault();
-
             var buttonTime = $(".event-button").attr("value")
-    
             //grab the text from the input box
-            var eventInput = $("#event-input").val().trim();
-
-    
+            var eventInput = $("#event-input").val();
             localStorage.setItem("event", eventInput);
-    
-    
-    
-    
+            console.log("you tryna add an event!");
         });
     }
 
-    //add save button listener for input to add to local storage
+    
   
-    //make an if else statement for past, present and future (< = > moment)
+    //if else statement for past, present and future (< = > moment)
 
 })
 

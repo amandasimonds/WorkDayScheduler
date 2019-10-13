@@ -29,7 +29,7 @@ $("#colorChange").on('click', function () {
       var newButton = $('<button>');
       newButton.addClass('newButton')
       newButton.text('Check out my attribute');
-      newButton.attr('randomThing', i)
+      newButton.attr('randomThing', i);+-
       $("#box-1").append(newButton)
     }
   })
