@@ -36,8 +36,12 @@ $(document).ready(function() {
         makeEventButton.text("Add Event");
         $("#event-input").attr("time", timeStamp[i]);
 
+        //add styling to divs
         $(timeDiv).addClass("time-block");
+        $(eventDiv).addClass("textarea");
+        $(makeEventButton).addClass("saveBtn");
 
+        //append classes
         $(".row").append(timeDiv);
         $(".row").append(eventDiv);
         $(".row").append(makeEventButton);

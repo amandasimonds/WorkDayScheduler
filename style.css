@@ -11,12 +11,11 @@ body {
     height: 600px;
   } */
 
-  textarea{
+  .textarea{
     background: transparent;
-    border: none;
     resize: none;
     color: #000000;
-    border-left: 1px solid black;
+    border: 1px solid green;
     padding: 10px;
   }
   
