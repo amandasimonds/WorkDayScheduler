@@ -14,9 +14,15 @@ body {
   .textarea{
     background: transparent;
     resize: none;
+    font-size: 11px;
     color: #000000;
+    padding: 2px;
+  }
+
+  .event-div{
+    background-color:lightgray;
     border-bottom: 1px solid black;
-    padding: 10px;
+    padding:10px;
     height:80px;
   }
   
@@ -85,7 +91,7 @@ body {
   }
 
   #event-input{
-    border: 1px solid gray;
+    border: none;
     width: 100%;
     float: left;
   }

@@ -27,46 +27,48 @@ $(document).ready(function() {
 
         var makeEventButton = $("<button id='event-button'>")
         var timeDiv = $("<div class='col-2'><p>" + timeStamp[i] + "</p></div>");
-        var eventDiv = $( `<div class='col-8'><input type='text' id='event-input' data-value = ' ${timeStamp[i]} '></div>`);
+        var eventInputField = $( `<input type='text' id='event-input' data-value = ' ${timeStamp[i]} '>`);
+        var eventDiv = $("<div class='col-8'></div>");
 
         makeEventButton.text("Add Event");
         $("#event-input").attr("time", timeStamp[i]);
 
         //add styling to divs
         $(timeDiv).addClass("time-block");
-        $(eventDiv).addClass("textarea");
+        $(eventInputField).addClass("textarea");
+        $(eventDiv).addClass("event-div");
         $(makeEventButton).addClass("saveBtn");
 
         //append divs
         $(".row").append(timeDiv);
         $(".row").append(eventDiv);
         $(".row").append(makeEventButton);
+        $(eventDiv).append(eventInputField);
         
 
         console.log("making buttons");
         console.log(timeStamp[i]);
 
-        //save button listener for input to add to local storage
-        $("#event-button").on("click", function(buttonTime) {
-            event.preventDefault();
-            var buttonTime = $(".event-button").attr("value")
-            //grab the text from the input box
-            var eventInput = $("#event-input").val();
-            //store text in local storage
-            var i = 0;
-            localStorage.setItem(i = timeStamp[i], eventInput);
-            console.log("you tryna add an event!");
-            $(eventDiv).append(localStorage.getItem(eventInput));
-        });
+        };
 
-        // $("#event-button").on("click", function(buttonTime) {
-        //     event.preventDefault();
-        //     var buttonTime = $(".event-button").attr("value")
-        //     //grab the text from the input box
-        //     var eventInput = $("#event-input").val();
-            
-        //     console.log("you tryna add an event again!");
-        // });
+         //save button listener for input to add to local storage
+    $("#event-button").on("click", function(buttonTime) {
+     event.preventDefault();
+     var buttonTime = $(".event-button").attr("value", timeStamp[i])
+     //grab the text from the input box
+     var eventInput = $("#event-input").val();
+     //store text in local storage
+     var i = 0;
+     localStorage.setItem(i = timeStamp[i], eventInput);
+     console.log("you tryna add an event!");
+     renderEvent();
+    });
+
+    //render local storage in event div
+    function renderEvent(){
+        $(eventDiv).append("#event-input");
+        console.log("trying to render this event!!!");
+        console.log($("#event-input").val());
     }
 
     
