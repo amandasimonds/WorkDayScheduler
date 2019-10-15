@@ -32,7 +32,6 @@ $(document).ready(function() {
         var savedEvents = $("<div>");
 
         makeEventButton.text("Add Event");
-        $("#event-input").attr("time", timeStamp[i]);
 
         //add styling to divs
         $(timeDiv).addClass("time-block");
@@ -40,6 +39,11 @@ $(document).ready(function() {
         $(eventDiv).addClass("event-div");
         $(makeEventButton).addClass("saveBtn");
         $(savedEvents).addClass("saved-events");
+
+        //add data-values for each div
+        $("#event-input").attr("data-value", timeStamp[i]);
+        $(savedEvents).attr("data-value", timeStamp[i]);
+        $(makeEventButton).attr("data-value", timeStamp[i]);
 
         //append divs
         $(".row").append(timeDiv);
@@ -56,35 +60,39 @@ $(document).ready(function() {
 
 
     //save button listener for input to add to local storage
-    $("#event-button").on("click", function(buttonTime) {
+    $("#event-button").on("click", function() {
         event.preventDefault();
-        var buttonTime = $(".event-button").attr("value", timeStamp[i])
+        // var eventTime = $(".event-button").attr();
+
         //grab the text from the input box
         var eventInput = $("#event-input").val();
         $("#event-input").val("");
+
         //store text in local storage
         var i = 0;
         localStorage.setItem(i = timeStamp[i], eventInput);
-        console.log("~~~~adding event~~~~");
+        console.log("~~~~adding event to local storage~~~~");
+        // console.log($(".event-button").attr());
         
+        //function to get event from local storage and render it on page
         function renderEvent(){
            $(".saved-events").prepend(eventInput);
            console.log("render this event!!!");
            console.log("event added: " + eventInput);
        }
-   
-       //render local storage in event div
+
+       //empty the input
        $("#event-input").empty();
+
+       //call the render event function
        renderEvent();
+
        });
     
 
-    
-    
 
-    
-  
-    //if else statement for past, present and future (< = > moment)
+      //if else statement for past, present and future (< = > moment)
+
 
 })
 

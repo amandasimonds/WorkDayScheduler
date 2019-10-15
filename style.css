@@ -105,4 +105,29 @@ body {
     transition: all .3s ease-in-out;
   }
 
+  @media screen and (max-width: 960px) {
+    /* The body's bg color will be #333 */
+    body {
+      background-color:rgb(202, 245, 202);
+    }
   
+    .container, .event-div, .row{
+      max-width: 100%;
+      float: left;
+    }
+
+    .event-div, .time-block,{
+      height: 70px;
+    }
+
+    .time-block{
+      width:20px;
+      font-size: 10px;
+    }
+
+    .saveBtn{
+      width: 50px;
+      font-size: 10px;
+    }
+
+  }
