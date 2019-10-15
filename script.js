@@ -25,10 +25,10 @@ $(document).ready(function() {
     //loop and create divs
     for(var i = 0; i < timeStamp.length; i++){
 
-        var makeEventButton = $("<button id='event-button'>")
+        var makeEventButton = $(`<button id='event-button' data-value = ' ${hour[i]}'>`)
         var timeDiv = $("<div class='col-2'><p>" + timeStamp[i] + "</p></div>");
-        var eventInputField = $( `<input type='text' id='event-input' data-value = ' ${currentHour[i]} '>`);
-        var eventDiv = $("<div class='col-8'></div>");
+        var eventInputField = $( `<input type='text' class='event-input' data-value = ' ${hour[i]} '>`);
+        var eventDiv = $(`<div class='col-8' data-value = ' ${hour[i]} '></div>`);
         var savedEvents = $("<div>");
 
         makeEventButton.text("Add Event");
@@ -38,15 +38,16 @@ $(document).ready(function() {
         $(eventInputField).addClass("textarea");
         $(eventDiv).addClass("event-div");
         $(makeEventButton).addClass("saveBtn");
-        $(savedEvents).addClass("saved-events-style");
+        $(savedEvents).addClass("saved-events");
 
         //add data-values for each div
         var hourValue = hour[i];
-        $("#event-input").attr("data-value", timeStamp[i]);
+        // $(".event-input").attr("data-value", timeStamp[i]);
         $(savedEvents).data({ "hour": hourValue});
         $(makeEventButton).data({ "hour": hourValue});
+        $(eventDiv).data({"hour": hourValue});
 
-        console.log(timeStamp[i], savedEvents.data());
+        console.log(timeStamp[i], eventDiv.data());
 
         //append divs
         $(".row").append(timeDiv);
@@ -55,43 +56,40 @@ $(document).ready(function() {
         $(eventDiv).append(eventInputField);
         $(eventDiv).append(savedEvents);
         
-
-        
-
         };
 
-
-    //save button listener for input to add to local storage
-    $("#event-button").on("click", function() {
-        event.preventDefault();
+        //save button listener for input to add to local storage
+    $(".saveBtn").on("click", function() {
+        // event.preventDefault();
         // var eventTime = $(".event-button").attr();
 
         //grab the text from the input box
-        var eventInput = $("#event-input").val();
-        $("#event-input").val("");
+        var eventInput = $(".event-input").val();
+        $(".event-input").val("");
 
         //store text in local storage
         var i = 0;
         localStorage.setItem(i = timeStamp[i], eventInput);
         console.log("~~~~adding event to local storage~~~~");
         // console.log($(".event-button").attr());
+
         
         //function to get event from local storage and render it on page
         function renderEvent(){
-           $(".saved-events").prepend(eventInput);
+            
+        //    $(".saved-events").prepend(eventInput);
            console.log("render this event!!!");
            console.log("event added: " + eventInput);
        }
 
        //empty the input
-       $("#event-input").empty();
+       $(".event-input").empty();
 
        //call the render event function
        renderEvent();
 
        });
     
-
 
       //if else statement for past, present and future (< = > moment)
 
