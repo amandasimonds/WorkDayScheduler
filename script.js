@@ -1,7 +1,5 @@
 
-console.log(moment());
 console.log("Script is here");
-
 
 $(document).ready(function() {
 
@@ -9,10 +7,11 @@ $(document).ready(function() {
     var m = moment();
     var currentTime = m.format('MMMM Do YYYY, h:mm:ss a');
     var currentDate = m.format("MMM Do YYYY");
-    var currentHour = m.format()
+    var currentHour = moment().hours();
 
     console.log(m);
     console.log(currentTime);
+    console.log(currentHour);
 
     //current date header
     $("#currentDay").text("Today's Date: " + currentDate);
@@ -21,13 +20,14 @@ $(document).ready(function() {
     //make 9am - 5pm timeslots
     //make an array of timestamps
     var timeStamp = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+    var hour = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
 
     //loop and create divs
     for(var i = 0; i < timeStamp.length; i++){
 
         var makeEventButton = $("<button id='event-button'>")
         var timeDiv = $("<div class='col-2'><p>" + timeStamp[i] + "</p></div>");
-        var eventInputField = $( `<input type='text' id='event-input' data-value = ' ${timeStamp[i]} '>`);
+        var eventInputField = $( `<input type='text' id='event-input' data-value = ' ${currentHour[i]} '>`);
         var eventDiv = $("<div class='col-8'></div>");
         var savedEvents = $("<div>");
 
@@ -38,12 +38,15 @@ $(document).ready(function() {
         $(eventInputField).addClass("textarea");
         $(eventDiv).addClass("event-div");
         $(makeEventButton).addClass("saveBtn");
-        $(savedEvents).addClass("saved-events");
+        $(savedEvents).addClass("saved-events-style");
 
         //add data-values for each div
+        var hourValue = hour[i];
         $("#event-input").attr("data-value", timeStamp[i]);
-        $(savedEvents).attr("data-value", timeStamp[i]);
-        $(makeEventButton).attr("data-value", timeStamp[i]);
+        $(savedEvents).data({ "hour": hourValue});
+        $(makeEventButton).data({ "hour": hourValue});
+
+        console.log(timeStamp[i], savedEvents.data());
 
         //append divs
         $(".row").append(timeDiv);
@@ -53,8 +56,7 @@ $(document).ready(function() {
         $(eventDiv).append(savedEvents);
         
 
-        console.log("making divs");
-        console.log(timeStamp[i]);
+        
 
         };
 
