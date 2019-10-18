@@ -25,11 +25,11 @@ $(document).ready(function() {
     //loop and create divs
     for(var i = 0; i < timeStamp.length; i++){
 
-        var makeEventButton = $(`<button id='event-button' data-value = ' ${hour[i]}'>`)
-        var timeDiv = $("<div class='col-2'><p>" + timeStamp[i] + "</p></div>");
+        var makeEventButton = $(`<button class='saveBtn' data-value = ' ${hour[i]}'>`)
+        var timeDiv = $("<div class='col-2'>" + timeStamp[i] + "</div>");
         var eventInputField = $( `<input type='text' class='event-input' data-value = ' ${hour[i]} '>`);
         var eventDiv = $(`<div class='col-8' data-value = ' ${hour[i]} '></div>`);
-        var savedEvents = $("<div>");
+        var savedEvents = $(`<div data value= ' ${hour[i]}'></div>`);
 
         makeEventButton.text("Add Event");
 
@@ -37,17 +37,16 @@ $(document).ready(function() {
         $(timeDiv).addClass("time-block");
         $(eventInputField).addClass("textarea");
         $(eventDiv).addClass("event-div");
-        $(makeEventButton).addClass("saveBtn");
         $(savedEvents).addClass("saved-events");
 
         //add data-values for each div
         var hourValue = hour[i];
-        // $(".event-input").attr("data-value", timeStamp[i]);
+        $(".event-input").attr("data-value", timeStamp[i]);
         $(savedEvents).data({ "hour": hourValue});
         $(makeEventButton).data({ "hour": hourValue});
         $(eventDiv).data({"hour": hourValue});
 
-        console.log(timeStamp[i], eventDiv.data());
+        console.log(timeStamp[i], eventDiv.attr("data-value"));
 
         //append divs
         $(".row").append(timeDiv);
@@ -65,37 +64,57 @@ $(document).ready(function() {
 
         //grab the text from the input box
         var eventInput = $(".event-input").val();
-        $(".event-input").val("");
+        
 
         //store text in local storage
         var i = 0;
         localStorage.setItem(i = timeStamp[i], eventInput);
         console.log("~~~~adding event to local storage~~~~");
-        // console.log($(".event-button").attr());
+        console.log($(".saveBtn").attr("data-value"));
 
         
         //function to get event from local storage and render it on page
         function renderEvent(){
             
-        //    $(".saved-events").prepend(eventInput);
+           $(".saved-events").append(eventInput);
            console.log("render this event!!!");
            console.log("event added: " + eventInput);
-       }
+       };
 
        //empty the input
-       $(".event-input").empty();
+       $(".event-input").val("");
 
        //call the render event function
        renderEvent();
 
-       });
+    });
     
 
       //if else statement for past, present and future (< = > moment)
+      function timeStyle(){
+        if(
+            $(".saved-events").attr("data-value") <= currentHour) {
+                // change the class to future
+                $(".saved-events").attr("class", "future");
+            }
+        else if(
+            $(".saved-events").attr("data-value") === currentHour) {
+                // change the class to present
+                $(".saved-events").attr("class", "present");
+            }
 
+        else if (
+            $(".saved-events").attr("data-value") <= currentHour) {
+                // change the class to past
+                $(".saved-events").attr("class", "past");
+            }
 
-})
+        console.log("changing the time style");
+    }
 
+    timeStyle();
+
+});
 
 
     
