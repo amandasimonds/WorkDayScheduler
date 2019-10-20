@@ -28,8 +28,8 @@ $(document).ready(function() {
         var makeEventButton = $(`<button class='saveBtn' data-value = ' ${hour[i]}'>`)
         var timeDiv = $("<div class='col-2'>" + timeStamp[i] + "</div>");
         var eventInputField = $( `<input type='text' class='event-input' data-value = ' ${hour[i]} '>`);
-        var eventDiv = $(`<div class='col-8' data-value = ' ${hour[i]} '></div>`);
-        var savedEvents = $(`<div data value= ' ${hour[i]}'></div>`);
+        var eventDiv = $(`<div class='col-8' data-value= ' ${hour[i]} '></div>`);
+        var savedEvents = $(`<div data-value= ' ${hour[i]}'></div>`);
 
         makeEventButton.text("Add Event");
 
@@ -47,6 +47,7 @@ $(document).ready(function() {
         $(eventDiv).data({"hour": hourValue});
 
         console.log(timeStamp[i], eventDiv.attr("data-value"));
+        console.log($(makeEventButton).attr("data-value"));
 
         //append divs
         $(".row").append(timeDiv);
@@ -58,9 +59,11 @@ $(document).ready(function() {
         };
 
         //save button listener for input to add to local storage
-    $(".saveBtn").on("click", function() {
-        // event.preventDefault();
-        // var eventTime = $(".event-button").attr();
+    $(document).on("click", makeEventButton, function() {
+        event.preventDefault();
+        console.log("it was clicked");
+        var eventTime = $(".event-button").attr("data-value");
+        console.log(eventTime);
 
         //grab the text from the input box
         var eventInput = $(".event-input").val();
@@ -70,8 +73,7 @@ $(document).ready(function() {
         var i = 0;
         localStorage.setItem(i = timeStamp[i], eventInput);
         console.log("~~~~adding event to local storage~~~~");
-        console.log($(".saveBtn").attr("data-value"));
-
+        console.log($(makeEventButton).attr("data-value"));
         
         //function to get event from local storage and render it on page
         function renderEvent(){
